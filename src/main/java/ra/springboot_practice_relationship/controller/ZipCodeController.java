@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/zipcodes")
+@RequestMapping("/api.library.com/zipcodes")
 public class ZipCodeController {
     private final ZipCodeService zipCodeService;
 
