@@ -1,5 +1,7 @@
 package ra.springboot_practice_relationship.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -22,10 +24,12 @@ public class Author {
     // Nhiều author chung 1 zipcode (nhiều tác giả sống cùng 1 thành phố)
     @ManyToOne
     @JoinColumn(name = "zipcode_id")
+    @JsonIgnore
     private ZipCode zipCode;
 
     /* relationship book_author */
     // 1 tác giả viết ra nhiều cuốn sách
     @ManyToMany (mappedBy = "authorList")
+    @JsonIgnore
     private List<Book> bookList;
 }

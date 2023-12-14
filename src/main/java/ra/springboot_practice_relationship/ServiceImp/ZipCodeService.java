@@ -49,7 +49,7 @@ public class ZipCodeService implements IZipCodeService {
     }
 
     @Override
-    public ZipCode setCityToNull(Long id) throws NotFoundException {
+    public ZipCode removeCityFormZipCode(Long id) throws NotFoundException {
         ZipCode zipCode = findById(id);
         zipCode.setCity(null);
         return save(zipCode);

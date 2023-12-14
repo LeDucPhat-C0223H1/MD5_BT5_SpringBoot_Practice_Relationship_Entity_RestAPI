@@ -17,5 +17,5 @@ public interface IZipCodeService {
 
     ZipCode addCityToZipCode(Long cityId, Long zipCodeId) throws NotFoundException;
 
-    ZipCode setCityToNull(Long id) throws NotFoundException;
+    ZipCode removeCityFormZipCode(Long id) throws NotFoundException;
 }

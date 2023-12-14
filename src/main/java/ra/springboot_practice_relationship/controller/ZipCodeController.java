@@ -4,17 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ra.springboot_practice_relationship.ServiceImp.ZipCodeService;
 import ra.springboot_practice_relationship.exception.NotFoundException;
 import ra.springboot_practice_relationship.model.ZipCode;
+import ra.springboot_practice_relationship.service.IZipCodeService;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api.library.com/zipcodes")
+@RequestMapping("api.library.com/zipcodes")
 public class ZipCodeController {
-    private final ZipCodeService zipCodeService;
+    private IZipCodeService zipCodeService;
 
     @GetMapping
     public ResponseEntity<List<ZipCode>> getZipcodes() {
@@ -51,8 +51,8 @@ public class ZipCodeController {
         return new ResponseEntity<>(zipCodeService.addCityToZipCode(cityId, zipcodeId), HttpStatus.OK);
     }
 
-    @PutMapping
+    @DeleteMapping("/{zipcodeId}/city}")
     public ResponseEntity<ZipCode> deleteCity(@PathVariable Long zipcodeId) throws NotFoundException {
-        return new ResponseEntity<>(zipCodeService.setCityToNull(zipcodeId), HttpStatus.OK);
+        return new ResponseEntity<>(zipCodeService.removeCityFormZipCode(zipcodeId), HttpStatus.OK);
     }
 }
