@@ -1,5 +1,6 @@
 package ra.springboot_practice_relationship.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -21,5 +22,6 @@ public class Category {
     /* relationship category_book */
     // 1 category sẽ có nhiều sách
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Book> bookList;
 }

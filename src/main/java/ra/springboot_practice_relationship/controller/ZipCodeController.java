@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/zipcode")
+@RequestMapping("/api/v1/zipcodes")
 public class ZipCodeController {
     private final ZipCodeService zipCodeService;
 
@@ -40,7 +40,7 @@ public class ZipCodeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ZipCode> editZipcode(@RequestBody ZipCode zipCode, @PathVariable Long id) throws NotFoundException {
-        zipCodeService.findById(id);
+        zipCode.setId(zipCodeService.findById(id).getId());
         return new ResponseEntity<>(zipCodeService.save(zipCode), HttpStatus.OK);
     }
 
@@ -51,7 +51,7 @@ public class ZipCodeController {
         return new ResponseEntity<>(zipCodeService.addCityToZipCode(cityId, zipcodeId), HttpStatus.OK);
     }
 
-    @PutMapping("/{zipcodeId}/city/null")
+    @PutMapping
     public ResponseEntity<ZipCode> deleteCity(@PathVariable Long zipcodeId) throws NotFoundException {
         return new ResponseEntity<>(zipCodeService.setCityToNull(zipcodeId), HttpStatus.OK);
     }

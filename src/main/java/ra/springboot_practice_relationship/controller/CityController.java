@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/city")
+@RequestMapping("/api/v1/cities")
 public class CityController {
     private final ICityService cityService;
 
@@ -39,7 +39,8 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<City> editCity(@RequestBody City city, @PathVariable Long id) {
+    public ResponseEntity<City> editCity(@RequestBody City city, @PathVariable Long id) throws NotFoundException {
+        city.setId(cityService.findById(id).getId());
         return new ResponseEntity<>(cityService.save(city), HttpStatus.OK);
     }
 }
