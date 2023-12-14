@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api.library.com/books")
+@RequestMapping("/api.library.com/v1/books")
 public class BookController {
     private final IBookService bookService;
 
@@ -43,24 +43,24 @@ public class BookController {
 
     /******************************************************************************************/
 
-
-    @PutMapping("/{bookId}/category/{categoryId}")
+    @PutMapping("/{bookId}/categories/{categoryId}")
     public ResponseEntity<Book> addCategory(@PathVariable Long categoryId, @PathVariable Long bookId) throws NotFoundException {
         return new ResponseEntity<>(bookService.addCategoryToBook(categoryId,bookId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{bookId}/category/{categoryId}")
+    @DeleteMapping("/{bookId}/category")
     public ResponseEntity<Book> removeCategory(@PathVariable Long bookId) throws NotFoundException {
         return new ResponseEntity<>(bookService.removeCategoryFromBook(bookId), HttpStatus.OK);
     }
 
-    @PutMapping("/{bookId}/author/{authorId}")
-    public ResponseEntity<Book> addAuthor(@PathVariable Long authorId, @PathVariable Long bookId) {
-        return null;
+    @PutMapping("/{bookId}/authors/{authorId}")
+    public ResponseEntity<Book> addAuthor(@PathVariable Long authorId, @PathVariable Long bookId) throws NotFoundException {
+        return new ResponseEntity<>(bookService.addAuthorToBook(authorId, bookId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{bookId}/author/{authorId}")
-    public ResponseEntity<Book> removeAuthor(@PathVariable Long authorId, @PathVariable Long bookId) {
-        return null;
+
+    @DeleteMapping("/{bookId}/authors/{authorId}")
+    public ResponseEntity<Book> removeAuthor(@PathVariable Long authorId, @PathVariable Long bookId) throws NotFoundException {
+        return new ResponseEntity<>(bookService.removeAuthorFromBook(authorId, bookId), HttpStatus.OK);
     }
 }

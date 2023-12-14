@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 100)
@@ -24,7 +24,7 @@ public class Author {
     // Nhiều author chung 1 zipcode (nhiều tác giả sống cùng 1 thành phố)
     @ManyToOne
     @JoinColumn(name = "zipcode_id")
-    @JsonIgnore
+
     private ZipCode zipCode;
 
     /* relationship book_author */

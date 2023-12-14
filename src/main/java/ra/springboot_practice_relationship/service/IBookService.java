@@ -17,5 +17,5 @@ public interface IBookService {
     Book removeCategoryFromBook(Long bookId) throws NotFoundException;
 
     Book addAuthorToBook(Long authorId, Long bookId) throws NotFoundException;
-    Book removeAuthorFromBook(Long bookId) throws NotFoundException;
+    Book removeAuthorFromBook(Long authorId, Long bookId) throws NotFoundException;
 }

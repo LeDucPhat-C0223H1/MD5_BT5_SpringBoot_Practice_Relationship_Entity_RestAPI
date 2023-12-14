@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api.library.com/authors")
+@RequestMapping("/api.library.com/v1/authors")
 public class AuthorController {
     private final IAuthorService authorService;
 
@@ -42,13 +42,13 @@ public class AuthorController {
 
     /**************************************************************************************/
 
-    @PutMapping("/{authorId}/zipcode/{zipcodeId}")
+    @PutMapping("/{authorId}/zipcodes/{zipcodeId}")
     private ResponseEntity<Author> addZipcode(@PathVariable Long zipcodeId, @PathVariable Long authorId) throws NotFoundException {
         return new ResponseEntity<>(authorService.addZipCodeToAuthor(zipcodeId, authorId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{authorId}/zipcode/{zipcodeId}")
-    private ResponseEntity<Author> removeZipcode(@PathVariable Long zipcodeId) throws NotFoundException {
-        return new ResponseEntity<>(authorService.removeZipCodeFromAuthor(zipcodeId), HttpStatus.OK);
+    @DeleteMapping("/{authorId}/zipcode")
+    private ResponseEntity<Author> removeZipcode(@PathVariable Long authorId) throws NotFoundException {
+        return new ResponseEntity<>(authorService.removeZipCodeFromAuthor(authorId), HttpStatus.OK);
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api.library.com/cities")
+@RequestMapping("/api.library.com/v1/cities")
 public class CityController {
     private final ICityService cityService;
 

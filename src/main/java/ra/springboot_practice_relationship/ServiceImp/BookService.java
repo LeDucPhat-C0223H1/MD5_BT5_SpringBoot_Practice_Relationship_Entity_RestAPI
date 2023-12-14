@@ -3,6 +3,7 @@ package ra.springboot_practice_relationship.ServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ra.springboot_practice_relationship.exception.NotFoundException;
+import ra.springboot_practice_relationship.model.Author;
 import ra.springboot_practice_relationship.model.Book;
 import ra.springboot_practice_relationship.model.Category;
 import ra.springboot_practice_relationship.reponsitory.IBookRepository;
@@ -56,18 +57,19 @@ public class BookService implements IBookService {
 
     @Override
     public Book addAuthorToBook(Long authorId, Long bookId) throws NotFoundException {
-//        Author author = authorService.findById(authorId);
-//        Book book = findById(bookId);
-//        //
-//        book.setAuthorList());
-//        return save(book);
-        return null;
+        Author author = authorService.findById(authorId);
+        Book book = findById(bookId);
+        //
+        book.getAuthorList().add(author);
+        return save(book);
     }
 
     @Override
-    public Book removeAuthorFromBook(Long bookId) throws NotFoundException {
+    public Book removeAuthorFromBook(Long authorId, Long bookId) throws NotFoundException {
+        Author author = authorService.findById(authorId);
         Book book = findById(bookId);
-        book.setAuthorList(null);
+        //
+        book.getAuthorList().remove(author);
         return save(book);
     }
 }
