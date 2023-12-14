@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/zipCode")
+@RequestMapping("/api/v1/zipcode")
 public class ZipCodeController {
     private final ZipCodeService zipCodeService;
 
@@ -43,15 +43,16 @@ public class ZipCodeController {
         zipCodeService.findById(id);
         return new ResponseEntity<>(zipCodeService.save(zipCode), HttpStatus.OK);
     }
-//
-//    @PostMapping("/addCity/{cityId}/toZipcode/{zipcodeId}")
-//    public ResponseEntity<Zipcode> addCity(@PathVariable  Long cityId,
-//                                           @PathVariable  Long zipcodeId) {
-//
-//    }
-//
-//    @PostMapping("/deleteCity/{zipcodeId}")
-//    public ResponseEntity<Zipcode> deleteCity(@PathVariable  Long zipcodeId) {
-//
-//    }
+
+    /******************************************************************************************/
+
+    @PutMapping("/{zipcodeId}/city/{cityId}")
+    public ResponseEntity<ZipCode> addCity(@PathVariable Long cityId, @PathVariable Long zipcodeId) throws NotFoundException {
+        return new ResponseEntity<>(zipCodeService.addCityToZipCode(cityId, zipcodeId), HttpStatus.OK);
+    }
+
+    @PutMapping("/{zipcodeId}/city/null")
+    public ResponseEntity<ZipCode> deleteCity(@PathVariable Long zipcodeId) throws NotFoundException {
+        return new ResponseEntity<>(zipCodeService.setCityToNull(zipcodeId), HttpStatus.OK);
+    }
 }

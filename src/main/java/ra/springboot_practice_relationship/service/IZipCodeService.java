@@ -12,4 +12,10 @@ public interface IZipCodeService {
     ZipCode findById(Long id) throws NotFoundException;
     ZipCode save (ZipCode zipCode);
     void delete(Long id);
+
+    /***************************************************/
+
+    ZipCode addCityToZipCode(Long cityId, Long zipCodeId) throws NotFoundException;
+
+    ZipCode setCityToNull(Long id) throws NotFoundException;
 }
