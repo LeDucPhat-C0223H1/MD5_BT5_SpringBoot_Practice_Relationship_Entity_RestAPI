@@ -1,4 +1,4 @@
-package ra.springboot_practice_relationship.ServiceImp;
+package ra.springboot_practice_relationship.serviceimpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
